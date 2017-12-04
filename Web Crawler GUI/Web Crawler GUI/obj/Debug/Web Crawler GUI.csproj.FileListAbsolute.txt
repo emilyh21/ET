@@ -1,9 +1,0 @@
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\bin\Debug\Web Crawler GUI.exe.config
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\bin\Debug\Web Crawler GUI.exe
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\bin\Debug\Web Crawler GUI.pdb
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\obj\Debug\Web Crawler GUI.csprojResolveAssemblyReference.cache
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\obj\Debug\Web_Crawler_GUI.Form1.resources
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\obj\Debug\Web_Crawler_GUI.Properties.Resources.resources
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\obj\Debug\Web Crawler GUI.csproj.GenerateResource.Cache
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\obj\Debug\Web Crawler GUI.exe
-C:\Users\Thane\Documents\GitHub\ET\Web Crawler GUI\Web Crawler GUI\obj\Debug\Web Crawler GUI.pdb
