@@ -21,3 +21,11 @@ C:\Users\Thane\Documents\School Work 2017-2018\Capstone\Web Crawler 2.0\WebCrawl
 C:\Users\Thane\Documents\School Work 2017-2018\Capstone\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.csproj.GenerateResource.Cache
 C:\Users\Thane\Documents\School Work 2017-2018\Capstone\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.exe
 C:\Users\Thane\Documents\School Work 2017-2018\Capstone\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.pdb
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\bin\Debug\WebCrawler.exe.config
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\bin\Debug\WebCrawler.exe
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\bin\Debug\WebCrawler.pdb
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.csprojResolveAssemblyReference.cache
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.UI.resources
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.csproj.GenerateResource.Cache
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.exe
+C:\Users\Thane\Documents\GitHub\ET\Web Crawler 2.0\WebCrawler\obj\Debug\WebCrawler.pdb
