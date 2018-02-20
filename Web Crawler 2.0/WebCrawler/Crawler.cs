@@ -94,7 +94,7 @@ namespace WebCrawler
 
             Logging.Logging.WriteReportToDisk(stringBuilder.ToString());
 
-            System.Diagnostics.Process.Start(ConfigurationManager.AppSettings["logTextFileName"].ToString());
+            System.Diagnostics.Process.Start(@"C:\Webpage\Output.html");
 
             Environment.Exit(0);
         }

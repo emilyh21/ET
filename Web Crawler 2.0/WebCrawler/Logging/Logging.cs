@@ -19,7 +19,13 @@ namespace WebCrawler.Logging
         /// <param name="contents">string contents</param>
         public static void WriteReportToDisk(string contents)
         {
-            string fileName = ConfigurationManager.AppSettings["logTextFileName"].ToString();
+            string pathString2 = @"C:\Webpage";
+            System.IO.Directory.CreateDirectory(pathString2);
+            string fileNameX = "Output.html";
+            string pathString = System.IO.Path.Combine(pathString2, fileNameX);
+            //System.IO.File.Create(pathString);
+
+            string fileName = pathString;
             FileStream fStream = null;
             if (File.Exists(fileName))
             {
