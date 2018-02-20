@@ -14,6 +14,12 @@ namespace WebCrawler
     /// <summary>
     /// Main Crawler class.
     /// </summary>
+    /// 
+    public class GLOBALS
+    {
+        public static string websiteURL { get; set; }
+    }
+
     public class Crawler
     {
         #region Private Fields
@@ -72,9 +78,11 @@ namespace WebCrawler
         /// <summary>
         /// Initializing the crawling process.
         /// </summary>
+        /// 
+
         public void InitializeCrawl()
         {
-            CrawlPage(ConfigurationManager.AppSettings["url"]);
+            CrawlPage(GLOBALS.websiteURL);
         }
 
         /// <summary>

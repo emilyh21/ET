@@ -14,6 +14,7 @@ namespace WebCrawler
 {
     public partial class UI : Form
     {
+        public string website;
         // Declare our worker thread
         private Thread workerThread = null;
         private Crawler startCrawler = new Crawler(new ExternalUrlRepository(), new OtherUrlRepository(), new FailedUrlRepository(), new CurrentPageUrlRepository());
@@ -27,6 +28,8 @@ namespace WebCrawler
         {
             label1.Text = "Web crawling started.";
 
+            website = textBox1.Text;
+            GLOBALS.websiteURL = website;
             this.workerThread = new Thread(new ThreadStart(startCrawler.InitializeCrawl));
             this.workerThread.Start();
             
