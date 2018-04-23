@@ -26,18 +26,26 @@ namespace WebCrawler
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label1.Text = "Web crawling started.";
-
             website = textBox1.Text;
             GLOBALS.websiteURL = website;
-            this.workerThread = new Thread(new ThreadStart(startCrawler.InitializeCrawl));
-            this.workerThread.Start();
+            if (GLOBALS.websiteURL == "http://www.")
+            {
+
+            }
+            else
+            {
+                label1.Text = "Web crawling started.";
+                button2.Enabled = true;
+                this.workerThread = new Thread(new ThreadStart(startCrawler.InitializeCrawl));
+                this.workerThread.Start();
+            }
             
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             label2.Text = "Stopping Web crawling.";
+            button2.Enabled = false;
 
             startCrawler.InitilizeCreateReport();
         }
