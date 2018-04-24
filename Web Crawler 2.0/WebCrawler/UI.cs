@@ -36,6 +36,7 @@ namespace WebCrawler
             {
                 label1.Text = "Web crawling started.";
                 button2.Enabled = true;
+                GLOBALS.crawl = true;
                 this.workerThread = new Thread(new ThreadStart(startCrawler.InitializeCrawl));
                 this.workerThread.Start();
             }
@@ -46,6 +47,7 @@ namespace WebCrawler
         {
             label2.Text = "Stopping Web crawling.";
             button2.Enabled = false;
+            GLOBALS.crawl = false;
 
             startCrawler.InitilizeCreateReport();
         }

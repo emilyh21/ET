@@ -18,6 +18,7 @@ namespace WebCrawler
     public class GLOBALS
     {
         public static string websiteURL { get; set; }
+        public static bool crawl { get; set; }
     }
 
     public class Crawler
@@ -96,7 +97,15 @@ namespace WebCrawler
 
             System.Diagnostics.Process.Start(@"C:\Webpage\Output.html");
 
-            Environment.Exit(0);
+            _externalUrlRepository.List.Clear();
+            _otherUrlRepository.List.Clear();
+            _failedUrlRepository.List.Clear();
+            _currentPageUrlRepository.List.Clear();
+            _pages.Clear();
+            _exceptions.Clear();
+            isCurrentPage = true;
+
+            //Environment.Exit(0);
         }
 
         /// <summary>
@@ -105,50 +114,60 @@ namespace WebCrawler
         /// <param name="url">The url to crawl.</param>
         private void CrawlPage(string url)
         {
-            if (!PageHasBeenCrawled(url))
+            while (GLOBALS.crawl)
             {
-                var htmlText = GetWebText(url);
-               
-                var linkParser = new LinkParser();
-               
-                var page = new Page();
-                page.Text = htmlText;
-                page.Url = url;                
-
-                _pages.Add(page);
-                    
-                linkParser.ParseLinks(page, url);
-
-                //Add data to main data lists
-                if (isCurrentPage)
+                if (!PageHasBeenCrawled(url))
                 {
-                    AddRangeButNoDuplicates(_currentPageUrlRepository.List, linkParser.ExternalUrls);
-                }
-               
-                AddRangeButNoDuplicates(_externalUrlRepository.List, linkParser.ExternalUrls);                                               
-                AddRangeButNoDuplicates(_otherUrlRepository.List, linkParser.OtherUrls);
-                AddRangeButNoDuplicates(_failedUrlRepository.List, linkParser.BadUrls);      
+                    var htmlText = GetWebText(url);
 
-                foreach (string exception in linkParser.Exceptions)
-                    _exceptions.Add(exception);
+                    var linkParser = new LinkParser();
 
-                isCurrentPage = false;
-                //Crawl all the links found on the page.
-                foreach (string link in _externalUrlRepository.List)
-                {                  
-                    string formattedLink = link;
+                    var page = new Page();
+                    page.Text = htmlText;
+                    page.Url = url;
+
+                    _pages.Add(page);
+
+                    linkParser.ParseLinks(page, url);
+
+                    //Add data to main data lists
+                    if (isCurrentPage)
+                    {
+                        AddRangeButNoDuplicates(_currentPageUrlRepository.List, linkParser.ExternalUrls);
+                    }
+
+                    AddRangeButNoDuplicates(_externalUrlRepository.List, linkParser.ExternalUrls);
+                    AddRangeButNoDuplicates(_otherUrlRepository.List, linkParser.OtherUrls);
+                    AddRangeButNoDuplicates(_failedUrlRepository.List, linkParser.BadUrls);
+
+                    foreach (string exception in linkParser.Exceptions)
+                        _exceptions.Add(exception);
+
+                    isCurrentPage = false;
+                    //Crawl all the links found on the page.
                     try
                     {
-                        formattedLink = FixPath(url, formattedLink);
-
-                        if (formattedLink != String.Empty)
+                        foreach (string link in _externalUrlRepository.List)
                         {
-                            CrawlPage(formattedLink);
+                            string formattedLink = link;
+                            try
+                            {
+                                formattedLink = FixPath(url, formattedLink);
+
+                                if (formattedLink != String.Empty)
+                                {
+                                    CrawlPage(formattedLink);
+                                }
+                            }
+                            catch (Exception exc)
+                            {
+                                _failedUrlRepository.List.Add(formattedLink + " (on page at url " + url + ") - " + exc.Message);
+                            }
                         }
                     }
-                    catch (Exception exc)
+                    catch
                     {
-                        _failedUrlRepository.List.Add(formattedLink + " (on page at url " + url + ") - " + exc.Message);
+                        return;
                     }
                 }
             }
@@ -266,13 +285,20 @@ namespace WebCrawler
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
             request.UserAgent = "A Web Crawler";
 
-            WebResponse response = request.GetResponse();
+            try
+            {
+                WebResponse response = request.GetResponse();
 
-            Stream stream = response.GetResponseStream();
+                Stream stream = response.GetResponseStream();
 
-            StreamReader reader = new StreamReader(stream);
-            string htmlText = reader.ReadToEnd();
-            return htmlText;
+                StreamReader reader = new StreamReader(stream);
+                string htmlText = reader.ReadToEnd();
+                return htmlText;
+            }
+            catch
+            {
+                return url;
+            }
         }      
     }
 }
