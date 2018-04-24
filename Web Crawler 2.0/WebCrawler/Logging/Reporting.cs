@@ -21,7 +21,9 @@ namespace WebCrawler.Logging
             var sb = new StringBuilder();
 
             sb.Append("<html><head><title>Web Crawling Report</title><style>");
-            sb.Append("table { border: solid 3px black; border-collapse: collapse; }");
+            sb.Append("body { background: url('http://adtecsol.com/images/website-background-images-tile-wallpaper-photo.jpg?crc=3942759990');background-repeat: repeat;}");
+            sb.Append("body {font-family: 'Rubik', sans - serif;}");
+            sb.Append("table { border: solid 4px black; border-collapse: collapse; }");
             sb.Append("table tr th { font-weight: bold; padding: 3px; padding-left: 10px; padding-right: 10px; }");
             sb.Append("table tr td { border: solid 1px black; padding: 3px;}");
             sb.Append("h1, h2, p { font-family: Rockwell; }");
@@ -29,6 +31,7 @@ namespace WebCrawler.Logging
             sb.Append("h2 { margin-top: 45px; }");
             sb.Append("</style></head><body>");
             sb.Append("<h1>Crawl Report</h1>");
+            sb.Append("<a name='top'></a>");
 
             sb.Append("<h2>Internal Urls - In Order Crawled</h2>");
             sb.Append("<p>These are the links found within the site. This is the order in which they were crawled.</p>");
@@ -38,13 +41,14 @@ namespace WebCrawler.Logging
             foreach (var page in currentPageUrlRepository.List)
             {
                 sb.Append("<tr><td>");
-                sb.Append(counter++);              
+                sb.Append(counter++);
                 sb.Append("</td><td>");
                 sb.Append(page);
                 sb.Append("</td></tr>");
             }
 
             sb.Append("</table>");
+            sb.Append("<a href='#top' style='float: right;font-size: large;color: black;font-weight: bold;'> BACK TO TOP </a> </a>");
 
             sb.Append("<h2>External Urls</h2>");
             sb.Append("<p>These are the links to the pages which are inside as well as outside the site which are crawled one by one.</p>");
@@ -61,6 +65,7 @@ namespace WebCrawler.Logging
             }
 
             sb.Append("</table>");
+            sb.Append("<a href='#top' style='float: right;font-size: large;color: black;font-weight: bold;'> BACK TO TOP </a> </a>");
 
             sb.Append("<h2>Other Urls</h2>");
             sb.Append("<p>These are the links to things on the site that are not html files (html, aspx, etc.), like images and css files. If you do not have permission to view some websites then this will fall in this category.</p>");
@@ -71,12 +76,13 @@ namespace WebCrawler.Logging
             {
                 sb.Append("<tr><td>");
                 sb.Append(counter3++);
-                sb.Append("</td><td>");              
+                sb.Append("</td><td>");
                 sb.Append(str);
                 sb.Append("</td></tr>");
             }
 
             sb.Append("</table>");
+            sb.Append("<a href='#top' style='float: right;font-size: large;color: black;font-weight: bold;'> BACK TO TOP </a> </a>");
 
             sb.Append("<h2>Bad Urls</h2>");
             sb.Append("<p>Any bad urls will be listed here.</p>");
@@ -89,7 +95,7 @@ namespace WebCrawler.Logging
                 {
                     sb.Append("<tr><td>");
                     sb.Append(counter4++);
-                    sb.Append("</td><td>");                         
+                    sb.Append("</td><td>");
                     sb.Append(str);
                     sb.Append("</td></tr>");
                 }
@@ -100,6 +106,8 @@ namespace WebCrawler.Logging
             }
 
             sb.Append("</table>");
+            sb.Append("<a href='#top' style='float: right;font-size: large;color: black;font-weight: bold;'> BACK TO TOP </a> </a>");
+
 
 
             sb.Append("<h2>Exceptions</h2>");
@@ -113,7 +121,7 @@ namespace WebCrawler.Logging
                 {
                     sb.Append("<tr><td>");
                     sb.Append(counter5++);
-                    sb.Append("</td><td>");                     
+                    sb.Append("</td><td>");
                     sb.Append(str);
                     sb.Append("</td></tr>");
                 }
@@ -125,8 +133,9 @@ namespace WebCrawler.Logging
 
             sb.Append("</table>");
 
+
             sb.Append("</body></html>");
             return sb;
-        }    
+        }
     }
 }
