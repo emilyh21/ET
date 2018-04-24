@@ -18,6 +18,7 @@ namespace WebCrawler
     public class GLOBALS
     {
         public static string websiteURL { get; set; }
+        public static string oldwebsiteURL { get; set; }
         public static bool crawl { get; set; }
     }
 
@@ -97,14 +98,6 @@ namespace WebCrawler
 
             System.Diagnostics.Process.Start(@"C:\Webpage\Output.html");
 
-            _externalUrlRepository.List.Clear();
-            _otherUrlRepository.List.Clear();
-            _failedUrlRepository.List.Clear();
-            _currentPageUrlRepository.List.Clear();
-            _pages.Clear();
-            _exceptions.Clear();
-            isCurrentPage = true;
-
             //Environment.Exit(0);
         }
 
@@ -114,8 +107,6 @@ namespace WebCrawler
         /// <param name="url">The url to crawl.</param>
         private void CrawlPage(string url)
         {
-            while (GLOBALS.crawl)
-            {
                 if (!PageHasBeenCrawled(url))
                 {
                     var htmlText = GetWebText(url);
@@ -145,8 +136,7 @@ namespace WebCrawler
 
                     isCurrentPage = false;
                     //Crawl all the links found on the page.
-                    try
-                    {
+
                         foreach (string link in _externalUrlRepository.List)
                         {
                             string formattedLink = link;
@@ -164,13 +154,7 @@ namespace WebCrawler
                                 _failedUrlRepository.List.Add(formattedLink + " (on page at url " + url + ") - " + exc.Message);
                             }
                         }
-                    }
-                    catch
-                    {
-                        return;
-                    }
                 }
-            }
         }
 
         /// <summary>

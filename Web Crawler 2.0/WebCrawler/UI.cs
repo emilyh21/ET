@@ -16,8 +16,9 @@ namespace WebCrawler
     {
         public string website;
         // Declare our worker thread
-        private Thread workerThread = null;
+        public Thread workerThread = null;
         private Crawler startCrawler = new Crawler(new ExternalUrlRepository(), new OtherUrlRepository(), new FailedUrlRepository(), new CurrentPageUrlRepository());
+        public Crawler newCrawler;
 
         public UI()
         {
@@ -26,6 +27,7 @@ namespace WebCrawler
 
         private void button1_Click(object sender, EventArgs e)
         {
+            newCrawler = new Crawler(new ExternalUrlRepository(), new OtherUrlRepository(), new FailedUrlRepository(), new CurrentPageUrlRepository());
             website = textBox1.Text;
             GLOBALS.websiteURL = website;
             if (GLOBALS.websiteURL == "http://www.")
@@ -37,7 +39,7 @@ namespace WebCrawler
                 label1.Text = "Web crawling started.";
                 button2.Enabled = true;
                 GLOBALS.crawl = true;
-                this.workerThread = new Thread(new ThreadStart(startCrawler.InitializeCrawl));
+                this.workerThread = new Thread(new ThreadStart(newCrawler.InitializeCrawl));
                 this.workerThread.Start();
             }
             
@@ -47,9 +49,9 @@ namespace WebCrawler
         {
             label2.Text = "Stopping Web crawling.";
             button2.Enabled = false;
-            GLOBALS.crawl = false;
-
-            startCrawler.InitilizeCreateReport();
+            //GLOBALS.crawl = false;
+            newCrawler.InitilizeCreateReport();
+            this.workerThread.Abort();
         }
     }
 }
