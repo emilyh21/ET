@@ -21,7 +21,7 @@ namespace WebCrawler.Logging
         {
             string pathString2 = @"C:\Webpage";
             System.IO.Directory.CreateDirectory(pathString2);
-            string fileNameX = "Output.html";
+            string fileNameX = "Output" + GLOBALS.numberofcrawl + ".html";
             string pathString = System.IO.Path.Combine(pathString2, fileNameX);
             //System.IO.File.Create(pathString);
 

@@ -18,8 +18,7 @@ namespace WebCrawler
     public class GLOBALS
     {
         public static string websiteURL { get; set; }
-        public static string oldwebsiteURL { get; set; }
-        public static bool crawl { get; set; }
+        public static int numberofcrawl { get; set; }
     }
 
     public class Crawler
@@ -96,7 +95,7 @@ namespace WebCrawler
 
             Logging.Logging.WriteReportToDisk(stringBuilder.ToString());
 
-            System.Diagnostics.Process.Start(@"C:\Webpage\Output.html");
+            System.Diagnostics.Process.Start(@"C:\Webpage\Output" + GLOBALS.numberofcrawl + ".html");
 
             //Environment.Exit(0);
         }
@@ -269,8 +268,6 @@ namespace WebCrawler
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
             request.UserAgent = "A Web Crawler";
 
-            try
-            {
                 WebResponse response = request.GetResponse();
 
                 Stream stream = response.GetResponseStream();
@@ -278,11 +275,6 @@ namespace WebCrawler
                 StreamReader reader = new StreamReader(stream);
                 string htmlText = reader.ReadToEnd();
                 return htmlText;
-            }
-            catch
-            {
-                return url;
-            }
         }      
     }
 }
