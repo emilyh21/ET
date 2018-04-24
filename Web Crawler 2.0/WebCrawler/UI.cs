@@ -30,7 +30,7 @@ namespace WebCrawler
             newCrawler = new Crawler(new ExternalUrlRepository(), new OtherUrlRepository(), new FailedUrlRepository(), new CurrentPageUrlRepository());
             website = textBox1.Text;
             GLOBALS.websiteURL = website;
-            if (GLOBALS.websiteURL == "http://www.")
+            if (GLOBALS.websiteURL == "http://www." || GLOBALS.websiteURL == "")
             {
 
             }
